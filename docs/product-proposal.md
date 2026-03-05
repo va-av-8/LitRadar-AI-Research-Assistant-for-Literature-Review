@@ -98,7 +98,7 @@ Semantic Scholar недоступен, ArXiv работает.
 | Тематика | AI/ML (NLP, CV, RL, reasoning) | Управляемые evals, доменная экспертиза автора |
 | Язык | Английский | Большинство релевантных источников |
 | Число итераций loop | Максимум 2 | Ограничение стоимости и latency |
-| Контекстное окно | До ~30 абстрактов за сессию | Лимит токенов при использовании claude-sonnet |
+| Контекстное окно | До ~30 абстрактов за сессию | Лимит токенов при использовании gpt-4.1-mini |
 
 ### Операционные ограничения
 
@@ -200,7 +200,7 @@ Synthesis агент поддерживает structured state сессии:
 | Компонент | Технология |
 |---|---|
 | Агентный фреймворк | LangGraph |
-| LLM | Claude claude-sonnet (Anthropic API) |
+| LLM | gpt-4.1-mini (OpenRouter API) |
 | Поиск статей | ArXiv API (arxiv Python library), Semantic Scholar API |
 | Векторная БД (session state) | ChromaDB (in-memory для PoC) |
 | UI | Streamlit |
