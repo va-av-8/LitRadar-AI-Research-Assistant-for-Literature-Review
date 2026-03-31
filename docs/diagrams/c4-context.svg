@@ -1,0 +1,67 @@
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,'Segoe UI',sans-serif">
+
+<rect width="900" height="560" fill="#fafafa"/>
+
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M1 1L9 5L1 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<text x="450" y="26" text-anchor="middle" font-size="11" fill="#aaa" letter-spacing="3" font-weight="500">C4 CONTEXT — LITRADAR</text>
+
+<rect x="350" y="48" width="200" height="110" rx="8" fill="#1168BD" stroke="#0d52a8" stroke-width="1"/>
+<text x="450" y="68" text-anchor="middle" font-size="10" fill="#93c2ef">[Person]</text>
+<text x="450" y="94" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="500">Исследователь</text>
+<text x="450" y="114" text-anchor="middle" font-size="11" fill="#b8d9f5">AI/ML researcher</text>
+<text x="450" y="132" text-anchor="middle" font-size="10" fill="#7db5e8">Запускает на своей машине</text>
+
+<line x1="442" y1="159" x2="442" y2="218" stroke="#1168BD" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="458" y1="218" x2="458" y2="159" stroke="#1168BD" stroke-width="1.5" marker-end="url(#arr)"/>
+<text x="467" y="184" font-size="11" fill="#555">запрос темы</text>
+<text x="433" y="201" text-anchor="end" font-size="11" fill="#555">получает обзор</text>
+
+<rect x="170" y="220" width="560" height="138" rx="8" fill="#0d7a45" stroke="#0a5c34" stroke-width="1.5"/>
+<text x="450" y="242" text-anchor="middle" font-size="10" fill="#6ecf9c">[Software System]</text>
+<text x="450" y="272" text-anchor="middle" font-size="17" fill="#ffffff" font-weight="600" letter-spacing="0.5">LitRadar</text>
+<text x="450" y="298" text-anchor="middle" font-size="12" fill="#b5efd0">Агентная система автоматического литературного обзора</text>
+<text x="450" y="318" text-anchor="middle" font-size="11" fill="#7fce9f">Тематика: AI/ML · Источники: ArXiv, Semantic Scholar</text>
+<text x="450" y="340" text-anchor="middle" font-size="10" fill="#5dab82">Python · LangGraph · ChromaDB · Streamlit · sentence-transformers</text>
+
+<line x1="248" y1="359" x2="157" y2="422" stroke="#888888" stroke-width="1.2" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="193" y="387" text-anchor="middle" font-size="10" fill="#666">поиск статей</text>
+
+<line x1="370" y1="359" x2="352" y2="422" stroke="#888888" stroke-width="1.2" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="352" y="390" text-anchor="middle" font-size="10" fill="#666">поиск + цит.</text>
+
+<line x1="540" y1="359" x2="547" y2="422" stroke="#888888" stroke-width="1.2" marker-start="url(#arr)" marker-end="url(#arr)"/>
+<text x="558" y="390" text-anchor="middle" font-size="10" fill="#666">LLM-вызовы</text>
+
+<line x1="668" y1="359" x2="742" y2="422" stroke="#888888" stroke-width="1.2" marker-end="url(#arr)"/>
+<text x="713" y="387" text-anchor="middle" font-size="10" fill="#666">трейсы / логи</text>
+
+<rect x="60" y="423" width="194" height="94" rx="6" fill="#5c5f6b" stroke="#494c56" stroke-width="1"/>
+<text x="157" y="443" text-anchor="middle" font-size="10" fill="#c0c2ca">[External System]</text>
+<text x="157" y="464" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="500">ArXiv API</text>
+<text x="157" y="483" text-anchor="middle" font-size="11" fill="#d8dae0">Препринты AI/ML</text>
+<text x="157" y="501" text-anchor="middle" font-size="10" fill="#9a9ca6">arxiv.org · публичный · без ключа</text>
+
+<rect x="269" y="423" width="194" height="94" rx="6" fill="#5c5f6b" stroke="#494c56" stroke-width="1"/>
+<text x="366" y="443" text-anchor="middle" font-size="10" fill="#c0c2ca">[External System]</text>
+<text x="366" y="462" text-anchor="middle" font-size="13" fill="#ffffff" font-weight="500">Semantic Scholar</text>
+<text x="366" y="481" text-anchor="middle" font-size="11" fill="#d8dae0">Метаданные + цитирования</text>
+<text x="366" y="501" text-anchor="middle" font-size="10" fill="#9a9ca6">semanticscholar.org · REST API</text>
+
+<rect x="477" y="423" width="194" height="94" rx="6" fill="#5c5f6b" stroke="#494c56" stroke-width="1"/>
+<text x="574" y="443" text-anchor="middle" font-size="10" fill="#c0c2ca">[External System]</text>
+<text x="574" y="464" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="500">OpenRouter</text>
+<text x="574" y="483" text-anchor="middle" font-size="11" fill="#d8dae0">LLM API</text>
+<text x="574" y="501" text-anchor="middle" font-size="10" fill="#9a9ca6">Gemini Flash / GPT-4.1</text>
+
+<rect x="686" y="423" width="154" height="94" rx="6" fill="#5c5f6b" stroke="#494c56" stroke-width="1"/>
+<text x="763" y="443" text-anchor="middle" font-size="10" fill="#c0c2ca">[External System]</text>
+<text x="763" y="464" text-anchor="middle" font-size="14" fill="#ffffff" font-weight="500">Langfuse</text>
+<text x="763" y="483" text-anchor="middle" font-size="11" fill="#d8dae0">Observability</text>
+<text x="763" y="501" text-anchor="middle" font-size="10" fill="#9a9ca6">Трейсы, логи, метрики</text>
+
+</svg>
