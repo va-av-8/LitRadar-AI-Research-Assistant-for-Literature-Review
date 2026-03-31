@@ -1,0 +1,134 @@
+<svg viewBox="0 0 900 1140" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,-apple-system,'Segoe UI',sans-serif">
+
+<rect width="900" height="1140" fill="#fafafa"/>
+
+<defs>
+<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M1 1L9 5L1 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<text x="450" y="22" text-anchor="middle" font-size="11" fill="#aaa" letter-spacing="3" font-weight="500">WORKFLOW — LITRADAR</text>
+
+<text x="42" y="43" font-size="9" fill="#888">
+  <tspan fill="#B45309" font-weight="700">■</tspan><tspan> Guardrail  </tspan>
+  <tspan fill="#6D28D9" font-weight="700">■</tspan><tspan> LLM-агент  </tspan>
+  <tspan fill="#0F766E" font-weight="700">■</tspan><tspan> Tool  </tspan>
+  <tspan fill="#0284C7" font-weight="700">■</tspan><tspan> Retrieval  </tspan>
+  <tspan fill="#991B1B" font-weight="700">■</tspan><tspan> STOP  </tspan>
+  <tspan fill="#15803D" font-weight="700">↺</tspan><tspan> retry / loop</tspan>
+</text>
+
+<rect x="320" y="55" width="110" height="36" rx="18" fill="#475569" stroke="#334155" stroke-width="1"/>
+<text x="375" y="73" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#e2e8f0" font-weight="500">пользователь</text>
+
+<rect x="295" y="130" width="165" height="44" rx="5" fill="#B45309" stroke="#92400E" stroke-width="1"/>
+<text x="377" y="142" text-anchor="middle" font-size="9" fill="#fde68a">[Guardrail]</text>
+<text x="377" y="155" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">Input Guard</text>
+<text x="377" y="167" text-anchor="middle" font-size="9" fill="#fef3c7">тематика · ширина · безоп.</text>
+
+<rect x="295" y="213" width="165" height="44" rx="5" fill="#0284C7" stroke="#0369A1" stroke-width="1"/>
+<text x="377" y="225" text-anchor="middle" font-size="9" fill="#bae6fd">[Retrieval]</text>
+<text x="377" y="238" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">KB Lookup</text>
+<text x="377" y="250" text-anchor="middle" font-size="9" fill="#e0f2fe">→ papers_from_kb</text>
+
+<rect x="295" y="296" width="165" height="44" rx="5" fill="#6D28D9" stroke="#5b20b8" stroke-width="1"/>
+<text x="377" y="308" text-anchor="middle" font-size="9" fill="#ddd6fe">[LLM Agent]</text>
+<text x="377" y="321" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">Planner Agent</text>
+<text x="377" y="333" text-anchor="middle" font-size="9" fill="#ede9fe">3–5 подзапросов</text>
+
+<rect x="295" y="379" width="165" height="44" rx="5" fill="#0F766E" stroke="#0d6460" stroke-width="1"/>
+<text x="377" y="391" text-anchor="middle" font-size="9" fill="#99f6e4">[Tool]</text>
+<text x="377" y="404" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">Search Agent</text>
+<text x="377" y="416" text-anchor="middle" font-size="9" fill="#ccfbf1">ArXiv + Semantic Scholar</text>
+
+<rect x="295" y="462" width="165" height="44" rx="5" fill="#B45309" stroke="#92400E" stroke-width="1"/>
+<text x="377" y="474" text-anchor="middle" font-size="9" fill="#fde68a">[Guardrail]</text>
+<text x="377" y="487" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">Sanitization</text>
+<text x="377" y="499" text-anchor="middle" font-size="9" fill="#fef3c7">anti-injection layer</text>
+
+<rect x="295" y="545" width="165" height="44" rx="5" fill="#6D28D9" stroke="#5b20b8" stroke-width="1"/>
+<text x="377" y="557" text-anchor="middle" font-size="9" fill="#ddd6fe">[LLM Agent]</text>
+<text x="377" y="570" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">Critic Agent</text>
+<text x="377" y="582" text-anchor="middle" font-size="9" fill="#ede9fe">батч ~10 статей</text>
+
+<rect x="295" y="628" width="165" height="44" rx="5" fill="#0284C7" stroke="#0369A1" stroke-width="1"/>
+<text x="377" y="640" text-anchor="middle" font-size="9" fill="#bae6fd">[Retrieval]</text>
+<text x="377" y="653" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">Index → ChromaDB</text>
+<text x="377" y="665" text-anchor="middle" font-size="9" fill="#e0f2fe">papers_accepted → KB</text>
+
+<rect x="295" y="711" width="165" height="44" rx="5" fill="#6D28D9" stroke="#5b20b8" stroke-width="1"/>
+<text x="377" y="723" text-anchor="middle" font-size="9" fill="#ddd6fe">[LLM Agent]</text>
+<text x="377" y="736" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">Synthesis Agent</text>
+<text x="377" y="748" text-anchor="middle" font-size="9" fill="#ede9fe">секции · противоречия · open_q.</text>
+
+<rect x="295" y="794" width="165" height="44" rx="5" fill="#B45309" stroke="#92400E" stroke-width="1"/>
+<text x="377" y="806" text-anchor="middle" font-size="9" fill="#fde68a">[Guardrail]</text>
+<text x="377" y="819" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">Citation Guard</text>
+<text x="377" y="831" text-anchor="middle" font-size="9" fill="#fef3c7">paper_id ∈ accepted</text>
+
+<rect x="295" y="877" width="165" height="44" rx="5" fill="#0F766E" stroke="#0d6460" stroke-width="1"/>
+<text x="377" y="889" text-anchor="middle" font-size="9" fill="#99f6e4">[Tool]</text>
+<text x="377" y="902" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">Verifier</text>
+<text x="377" y="914" text-anchor="middle" font-size="9" fill="#ccfbf1">HTTP-верификация цитат</text>
+
+<rect x="295" y="960" width="165" height="44" rx="5" fill="#6D28D9" stroke="#5b20b8" stroke-width="1"/>
+<text x="377" y="972" text-anchor="middle" font-size="9" fill="#ddd6fe">[LLM Agent]</text>
+<text x="377" y="985" text-anchor="middle" font-size="12" fill="#fff" font-weight="500">Renderer Agent</text>
+<text x="377" y="997" text-anchor="middle" font-size="9" fill="#ede9fe">→ Markdown обзор</text>
+
+<rect x="320" y="1043" width="110" height="36" rx="18" fill="#15803D" stroke="#0f5c2e" stroke-width="1"/>
+<text x="375" y="1061" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#dcfce7" font-weight="500">обзор готов</text>
+
+<line x1="375" y1="91" x2="375" y2="129" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="174" x2="375" y2="212" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="257" x2="375" y2="295" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="340" x2="375" y2="378" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="423" x2="375" y2="461" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="506" x2="375" y2="544" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="589" x2="375" y2="627" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="672" x2="375" y2="710" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="755" x2="375" y2="793" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="838" x2="375" y2="876" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="921" x2="375" y2="959" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+<line x1="375" y1="1004" x2="375" y2="1042" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+<path d="M 295 567 L 82 567 L 82 318 L 295 318" fill="none" stroke="#15803D" stroke-width="1.5" stroke-dasharray="6 3" marker-end="url(#arr)"/>
+<text x="76" y="443" text-anchor="end" font-size="9" fill="#15803D" transform="rotate(-90 76 443)">iter &lt; 2 · &gt;60% отсеяно</text>
+
+<path d="M 295 733 L 66 733 L 66 318 L 295 318" fill="none" stroke="#15803D" stroke-width="1.5" stroke-dasharray="6 3" marker-end="url(#arr)"/>
+<text x="60" y="526" text-anchor="end" font-size="9" fill="#15803D" transform="rotate(-90 60 526)">iter &lt; 2 · open_questions</text>
+
+<text x="388" y="275" font-size="9" fill="#64748b" font-style="italic">iter 2: уточнение по open_q.</text>
+
+<text x="388" y="772" font-size="9" fill="#64748b" font-style="italic">iter ≥ 2 / closed</text>
+
+<line x1="460" y1="152" x2="540" y2="152" stroke="#991B1B" stroke-width="1.2" marker-end="url(#arr)"/>
+<line x1="460" y1="401" x2="540" y2="401" stroke="#991B1B" stroke-width="1.2" marker-end="url(#arr)"/>
+<line x1="460" y1="484" x2="540" y2="484" stroke="#991B1B" stroke-width="1.2" marker-end="url(#arr)"/>
+<line x1="460" y1="567" x2="540" y2="567" stroke="#991B1B" stroke-width="1.2" marker-end="url(#arr)"/>
+<line x1="460" y1="733" x2="540" y2="733" stroke="#991B1B" stroke-width="1.2" marker-end="url(#arr)"/>
+<line x1="460" y1="899" x2="540" y2="899" stroke="#991B1B" stroke-width="1.2" marker-end="url(#arr)"/>
+
+<rect x="540" y="134" width="230" height="36" rx="5" fill="#991B1B" stroke="#7f1d1d" stroke-width="1"/>
+<text x="655" y="156" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#fee2e2">вне тематики / широкий → STOP</text>
+
+<rect x="540" y="383" width="230" height="36" rx="5" fill="#991B1B" stroke="#7f1d1d" stroke-width="1"/>
+<text x="655" y="405" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#fee2e2">0–2 результата / API down → STOP</text>
+
+<rect x="540" y="466" width="230" height="36" rx="5" fill="#991B1B" stroke="#7f1d1d" stroke-width="1"/>
+<text x="655" y="488" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#fee2e2">&gt;30% injection → STOP</text>
+
+<rect x="540" y="549" width="230" height="36" rx="5" fill="#991B1B" stroke="#7f1d1d" stroke-width="1"/>
+<text x="655" y="571" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#fee2e2">все статьи отсеяны → STOP</text>
+
+<rect x="540" y="715" width="230" height="36" rx="5" fill="#991B1B" stroke="#7f1d1d" stroke-width="1"/>
+<text x="655" y="730" text-anchor="middle" font-size="10" fill="#fee2e2" font-weight="500">budget &gt; $0.15 → STOP</text>
+<text x="655" y="744" text-anchor="middle" font-size="8" fill="#fca5a5">(при любом LLM-вызове)</text>
+
+<rect x="540" y="881" width="230" height="36" rx="5" fill="#991B1B" stroke="#7f1d1d" stroke-width="1"/>
+<text x="655" y="903" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#fee2e2">все цитаты не прошли → STOP</text>
+
+<text x="540" y="420" font-size="8" fill="#94a3b8" font-style="italic">один API → продолжить (gap note)</text>
+
+</svg>
