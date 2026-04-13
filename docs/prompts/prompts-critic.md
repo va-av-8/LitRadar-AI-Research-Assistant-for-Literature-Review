@@ -18,7 +18,13 @@ A paper is NOT relevant if:
 - It addresses a related but different problem (e.g., a paper about retrieval augmentation is not relevant to a topic about chain-of-thought prompting, even if both involve LLMs)
 - It is a general survey that happens to touch on the topic among many others
 
+A paper IS relevant even if it does not directly mention the topic by name, if it:
+- Critically challenges or refutes a foundational concept that the topic depends on (e.g., a paper arguing that emergent abilities in LLMs are a measurement artifact is relevant to chain-of-thought prompting, because CoT's effectiveness is often explained through emergence)
+- Provides evidence that substantially changes how the topic should be interpreted or scoped
+
 Judge relevance against the ORIGINAL research topic, not the subquery that retrieved the paper.
+
+
 
 ## Confidence levels
 

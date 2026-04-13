@@ -1,0 +1,354 @@
+[
+  {
+    "query": "chain-of-thought prompting in large language models",
+    "expected_papers": [
+      "arxiv:2201.11903",
+      "arxiv:2205.11916",
+      "arxiv:2203.11171",
+      "arxiv:2210.11416",
+      "arxiv:2304.15004",
+      "arxiv:2210.09261",
+      "arxiv:2203.14465",
+      "arxiv:2205.10625",
+      "arxiv:2202.12837",
+      "arxiv:2305.04388",
+      "arxiv:2305.20050"
+    ],
+    "should_have_contradictions": true,
+    "contradiction_pairs": [
+      [
+        "arxiv:2201.11903",
+        "arxiv:2304.15004",
+        "Wei et al. claim CoT is an emergent ability at ~100B scale; Schaeffer et al. argue emergent abilities are a mirage caused by nonlinear metric choices."
+      ],
+      [
+        "arxiv:2201.11903",
+        "arxiv:2203.14465",
+        "Wei et al. show CoT gains primarily in very large models; Zelikman et al. show smaller models (6B) can bootstrap strong reasoning via self-training."
+      ],
+      [
+        "arxiv:2201.11903",
+        "arxiv:2202.12837",
+        "Wei et al. rely on carefully constructed exemplars with correct reasoning chains; Min et al. show ground-truth labels barely matter for ICL performance."
+      ],
+      [
+        "arxiv:2201.11903",
+        "arxiv:2305.04388",
+        "Wei et al. present CoT as transparent reasoning; Turpin et al. show CoT explanations can be systematically unfaithful."
+      ]
+    ]
+  },
+  {
+    "query": "reinforcement learning from human feedback for LLM alignment",
+    "expected_papers": [
+      "arxiv:2203.02155",
+      "arxiv:2204.05862",
+      "arxiv:1706.03741",
+      "arxiv:2305.18290",
+      "arxiv:2309.00267",
+      "arxiv:2210.10760",
+      "arxiv:2310.13548",
+      "arxiv:2212.08073",
+      "arxiv:2307.15217",
+      "arxiv:2404.10719"
+    ],
+    "should_have_contradictions": true,
+    "contradiction_pairs": [
+      [
+        "arxiv:2203.02155",
+        "arxiv:2305.18290",
+        "InstructGPT uses PPO-based RL as essential for alignment; DPO argues RL is unnecessary and can be replaced with a simple classification loss."
+      ],
+      [
+        "arxiv:2305.18290",
+        "arxiv:2404.10719",
+        "DPO claims to be simpler and equally effective as PPO; Xu et al. show properly-implemented PPO surpasses DPO across all benchmarks."
+      ],
+      [
+        "arxiv:2203.02155",
+        "arxiv:2310.13548",
+        "RLHF substantially improves helpfulness; Sharma et al. show RLHF-trained models consistently exhibit sycophancy driven by biased preference data."
+      ],
+      [
+        "arxiv:2203.02155",
+        "arxiv:2210.10760",
+        "InstructGPT optimizes against a reward model; Gao et al. show this follows Goodhart's law — further optimization eventually degrades ground truth performance."
+      ]
+    ]
+  },
+  {
+    "query": "vision transformers for image classification",
+    "expected_papers": [
+      "arxiv:2010.11929",
+      "arxiv:2012.12877",
+      "arxiv:2103.14030",
+      "arxiv:2201.03545",
+      "arxiv:2108.08810",
+      "arxiv:2202.06709",
+      "arxiv:2106.08254",
+      "arxiv:2103.17239",
+      "arxiv:2101.11986",
+      "arxiv:2106.04560",
+      "arxiv:2106.14881",
+      "arxiv:2212.08013"
+    ],
+    "should_have_contradictions": true,
+    "contradiction_pairs": [
+      [
+        "arxiv:2010.11929",
+        "arxiv:2012.12877",
+        "ViT requires large-scale pretraining (JFT-300M) to match CNNs; DeiT shows competitive ViTs can be trained on ImageNet-1K alone with better training strategies."
+      ],
+      [
+        "arxiv:2010.11929",
+        "arxiv:2201.03545",
+        "ViT argues transformers should replace CNNs; ConvNeXt shows modernized pure CNNs match or exceed Swin Transformer performance."
+      ],
+      [
+        "arxiv:2103.14030",
+        "arxiv:2201.03545",
+        "Swin Transformer achieves SOTA with hierarchical attention design; ConvNeXt matches Swin performance with pure convolutions, questioning whether attention provides real architectural advantage."
+      ],
+      [
+        "arxiv:2010.11929",
+        "arxiv:2106.14881",
+        "ViT uses pure transformer with patchify stem; Xiao et al. show adding early convolutional layers dramatically improves ViT optimization stability, suggesting pure transformers lack necessary inductive biases."
+      ]
+    ]
+  },
+  {
+    "query": "retrieval-augmented generation for knowledge-intensive NLP",
+    "expected_papers": [
+      "arxiv:2005.11401",
+      "arxiv:2208.03299",
+      "arxiv:2002.08909",
+      "arxiv:2112.04426",
+      "arxiv:2310.11511",
+      "arxiv:2211.08411",
+      "arxiv:2307.03172",
+      "arxiv:2305.06983",
+      "arxiv:2212.14024",
+      "arxiv:2312.10997"
+    ],
+    "should_have_contradictions": true,
+    "contradiction_pairs": [
+      [
+        "arxiv:2112.04426",
+        "arxiv:2211.08411",
+        "RETRO achieves GPT-3-comparable performance with 25x fewer parameters via retrieval, suggesting retrieval can replace scale; Kandpal et al. show LLMs fundamentally struggle with long-tail knowledge regardless of scale, arguing retrieval is necessary even for the largest models."
+      ],
+      [
+        "arxiv:2002.08909",
+        "arxiv:2310.11511",
+        "REALM integrates retrieval at pre-training time; Self-RAG uses adaptive retrieval only at inference time and shows always-on retrieval can hurt performance."
+      ],
+      [
+        "arxiv:2005.11401",
+        "arxiv:2307.03172",
+        "RAG assumes retrieved documents faithfully improve generation; Liu et al. show models ignore information placed in the middle of long contexts, revealing a fundamental limitation of how retrieved content is used."
+      ]
+    ]
+  },
+  {
+    "query": "parameter-efficient fine-tuning of large language models",
+    "expected_papers": [
+      "arxiv:2106.09685",
+      "arxiv:2101.00190",
+      "arxiv:1902.00751",
+      "arxiv:2104.08691",
+      "arxiv:2110.07602",
+      "arxiv:2205.05638",
+      "arxiv:2405.09673",
+      "arxiv:2305.14314",
+      "arxiv:2304.01933",
+      "arxiv:2303.15647",
+      "arxiv:2303.10512",
+      "arxiv:2306.09782"
+    ],
+    "should_have_contradictions": true,
+    "contradiction_pairs": [
+      [
+        "arxiv:2106.09685",
+        "arxiv:2405.09673",
+        "LoRA claims performance comparable to full fine-tuning via low-rank hypothesis; Biderman et al. show LoRA substantially underperforms full fine-tuning on code and math, challenging the low-rank hypothesis."
+      ],
+      [
+        "arxiv:2106.09685",
+        "arxiv:2306.09782",
+        "LoRA proposes PEFT as practical alternative to full fine-tuning; Lv et al. enable full-parameter fine-tuning of 65B models on consumer GPUs, arguing full FT remains more powerful and is now feasible."
+      ],
+      [
+        "arxiv:2110.07602",
+        "arxiv:2106.09685",
+        "P-Tuning v2 claims prompt tuning is comparable to fine-tuning universally; LoRA achieves strong results via weight updates instead, with the two approaches disagreeing on which PEFT paradigm is superior."
+      ]
+    ]
+  },
+  {
+    "query": "diffusion models for image generation",
+    "expected_papers": [
+      "arxiv:2006.11239",
+      "arxiv:2112.10752",
+      "arxiv:2105.05233",
+      "arxiv:2010.02502",
+      "arxiv:2011.13456",
+      "arxiv:2207.12598",
+      "arxiv:2205.11487",
+      "arxiv:2204.06125",
+      "arxiv:2307.01952",
+      "arxiv:2212.09748",
+      "arxiv:2202.00512",
+      "arxiv:2206.00364"
+    ],
+    "should_have_contradictions": false,
+    "contradiction_pairs": []
+  },
+  {
+    "query": "scaling laws for neural language models",
+    "expected_papers": [
+      "arxiv:2001.08361",
+      "arxiv:2203.15556",
+      "arxiv:1712.00409",
+      "arxiv:2305.16264",
+      "arxiv:2112.11446",
+      "arxiv:1812.06162",
+      "arxiv:2210.14891",
+      "arxiv:2106.04560",
+      "arxiv:2206.14486",
+      "arxiv:2304.01373",
+      "arxiv:2005.14165",
+      "arxiv:2304.15004"
+    ],
+    "should_have_contradictions": true,
+    "contradiction_pairs": [
+      [
+        "arxiv:2001.08361",
+        "arxiv:2203.15556",
+        "Kaplan et al. conclude compute-optimal training should scale model size faster than data; Hoffmann et al. (Chinchilla) show model size and data should scale equally — a direct contradiction on compute-optimal allocation."
+      ],
+      [
+        "arxiv:2001.08361",
+        "arxiv:2206.14486",
+        "Kaplan et al. establish power law scaling as fundamental; Sorscher et al. show data pruning can beat power law scaling with strategically selected data."
+      ],
+      [
+        "arxiv:2001.08361",
+        "arxiv:2210.14891",
+        "Kaplan et al. fit smooth power law curves to scaling; Caballero et al. show scaling laws can break with non-monotonic behavior not captured by simple power laws."
+      ]
+    ]
+  },
+  {
+    "query": "in-context learning in large language models",
+    "expected_papers": [
+      "arxiv:2005.14165",
+      "arxiv:2301.00234",
+      "arxiv:2209.11895",
+      "arxiv:2202.12837",
+      "arxiv:2205.12685",
+      "arxiv:2212.10559",
+      "arxiv:2111.02080",
+      "arxiv:2208.01066",
+      "arxiv:2205.05055",
+      "arxiv:2404.11018",
+      "arxiv:2303.03846",
+      "arxiv:2212.07677"
+    ],
+    "should_have_contradictions": true,
+    "contradiction_pairs": [
+      [
+        "arxiv:2202.12837",
+        "arxiv:2205.12685",
+        "Min et al. show random labels barely hurt ICL performance; Kim et al. find ground-truth labels do matter significantly under certain conditions."
+      ],
+      [
+        "arxiv:2202.12837",
+        "arxiv:2303.03846",
+        "Min et al. find label correctness barely matters across models; Wei et al. show larger models do use ground-truth labels and can override semantic priors — a scale-dependent contradiction."
+      ],
+      [
+        "arxiv:2212.07677",
+        "arxiv:2111.02080",
+        "Von Oswald et al. argue ICL is mechanistically equivalent to gradient descent; Xie et al. explain ICL as implicit Bayesian inference — two competing mechanistic theories."
+      ],
+      [
+        "arxiv:2209.11895",
+        "arxiv:2212.10559",
+        "Olsson et al. attribute ICL to induction heads (pattern-matching/retrieval); Dai et al. argue models implicitly perform gradient descent, suggesting genuine learning rather than retrieval."
+      ]
+    ]
+  },
+  {
+    "query": "hallucination in large language models",
+    "expected_papers": [
+      "arxiv:2005.00661",
+      "arxiv:2309.01219",
+      "arxiv:2109.07958",
+      "arxiv:2305.14251",
+      "arxiv:2207.05221",
+      "arxiv:2305.15852",
+      "arxiv:2309.11495",
+      "arxiv:2304.13734",
+      "arxiv:2306.03341",
+      "arxiv:2406.10162"
+    ],
+    "should_have_contradictions": true,
+    "contradiction_pairs": [
+      [
+        "arxiv:2109.07958",
+        "arxiv:2207.05221",
+        "TruthfulQA shows larger models are less truthful (inverse scaling); Kadavath et al. show larger models are better calibrated at self-evaluating factual correctness."
+      ],
+      [
+        "arxiv:2109.07958",
+        "arxiv:2306.03341",
+        "TruthfulQA shows models output falsehoods; Li et al. demonstrate models internally represent truth even when generating falsehoods, with inference-time activation editing outperforming RLHF for truthfulness."
+      ],
+      [
+        "arxiv:2309.01219",
+        "arxiv:2406.10162",
+        "Hallucination surveys frame RLHF as a key mitigation; Denison et al. show RLHF can generalize from sycophancy to reward-tampering, suggesting it reshapes rather than reduces hallucination."
+      ]
+    ]
+  },
+  {
+    "query": "sparse mixture of experts for language models",
+    "expected_papers": [
+      "arxiv:2101.03961",
+      "arxiv:2112.06905",
+      "arxiv:1701.06538",
+      "arxiv:2401.04088",
+      "arxiv:2202.08906",
+      "arxiv:2202.01169",
+      "arxiv:2211.15841",
+      "arxiv:2305.14705",
+      "arxiv:2201.05596",
+      "arxiv:2106.04426",
+      "arxiv:2106.05974",
+      "arxiv:2308.00951"
+    ],
+    "should_have_contradictions": true,
+    "contradiction_pairs": [
+      [
+        "arxiv:2101.03961",
+        "arxiv:2202.08906",
+        "Switch Transformers use top-1 routing as sufficient; ST-MoE uses top-2 routing and shows it produces significantly more stable training and better fine-tuning quality."
+      ],
+      [
+        "arxiv:2101.03961",
+        "arxiv:2401.04088",
+        "Switch Transformers advocates top-1 routing for efficiency; Mixtral uses top-2 routing and outperforms Llama 2 70B with 5x fewer active parameters."
+      ],
+      [
+        "arxiv:2101.03961",
+        "arxiv:2308.00951",
+        "Switch Transformers uses discrete token-to-expert routing; Puigcerver et al. replace discrete routing with fully-differentiable soft assignment, fundamentally challenging the discrete routing paradigm."
+      ],
+      [
+        "arxiv:2101.03961",
+        "arxiv:2211.15841",
+        "Switch Transformers reports theoretical FLOP savings from sparse expert selection; MegaBlocks shows naive MoE implementations fail to translate FLOP savings to wall-clock speedups without specialized GPU kernels."
+      ]
+    ]
+  }
+]
