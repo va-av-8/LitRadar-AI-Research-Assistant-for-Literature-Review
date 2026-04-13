@@ -1,0 +1,30 @@
+# Environment and secrets
+.env
+.env.*
+
+# Data directories
+chroma_db/
+logs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Git
+.git/
+.gitignore
+
+# Documentation and tests
+docs/
+evals/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
