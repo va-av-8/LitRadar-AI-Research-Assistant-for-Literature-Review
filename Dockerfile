@@ -18,9 +18,6 @@ RUN uv sync --frozen --no-dev
 COPY src/ ./src/
 COPY app.py ./
 
-# Create volume for ChromaDB persistence
-VOLUME /data/chroma_db
-
 # Set default environment variables
 ENV CHROMA_DB_PATH=/data/chroma_db
 ENV PYTHONUNBUFFERED=1
