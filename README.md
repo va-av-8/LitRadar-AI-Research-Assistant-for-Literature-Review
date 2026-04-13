@@ -124,22 +124,23 @@ uv run python evals/eval_runner.py --reset-db --no-preload
 | **Retrieval Coverage** | `\|found ∩ expected\| / \|expected\|` до Critic | — | Доля эталонных статей, найденных поиском |
 | **Accepted Coverage** | `\|accepted ∩ expected\| / \|expected\|` после Critic | ≥70% | Доля эталонных статей в финальном результате |
 | **Hallucination Rate** | `removed_citations / (removed + verified)` | 0% | Доля цитат на несуществующие статьи |
-| **Contradiction Recall** | `\|detected ∩ expected_pairs\| / \|expected_pairs\|` | ≥60% | Способность находить противоречия |
+| **Contradictions Correct** | Найдены противоречия, если ожидались | — | Бинарная проверка: нашли ли хоть одно противоречие |
+| **Contradiction Recall** | `\|detected ∩ expected_pairs\| / \|expected_pairs\|` | ≥60% | Доля найденных ожидаемых пар противоречий |
 | **OQ Resolution** | `\|closed_questions\| / \|open_questions\|` | ≥60% | Прогресс во второй итерации |
 
 ### Текущие результаты (2026-04-14)
 
 **Общие метрики (10 тем):**
 
-| Metric | Value | Target |
-|--------|-------|--------|
-| Accepted coverage ≥ 70% | 0/10 (0%) | ≥ 70% |
-| Avg accepted coverage | 11.95% | ≥ 70% |
-| Hallucination rate = 0% | 1/10 (10%) | 100% |
-| Average hallucination rate | 31.40% | 0% |
-| Contradictions correct | 2/10 (20%) | ≥ 60%  |
-| OQ resolution ≥ 60% | 0/10 (0%) | ≥ 60% |
-| Average tokens/session | 51,364 | — |
+| Метрика | Значение | Цель |
+|---------|----------|------|
+| Avg Retrieval Coverage | 0% | — |
+| Avg Accepted Coverage | 11.95% | ≥70% |
+| Avg Hallucination Rate | 31.40% | 0% |
+| Contradictions Correct | 2/10 (20%) | — |
+| Avg Contradiction Recall | 0% | ≥60% |
+| Avg OQ Resolution | 0% | ≥60% |
+| Avg Tokens/Session | 51,364 | — |
 
 **Что работает:**
 - ✅ Pipeline стабильно завершается на всех 10 темах
@@ -150,18 +151,18 @@ uv run python evals/eval_runner.py --reset-db --no-preload
 
 **Per-topic результаты:**
 
-| Topic | Acc. Cov | Halluc. | Contr. recall | OQ res. | Tokens |
-|-------|----------|---------|---------------|---------|--------|
-| Chain-of-thought prompting | 55% | 5.88% | 0% | 0% | 56,433 |
-| RLHF for LLM alignment | 20% | 0% | 0% | — | 65,097 |
-| Vision transformers | 0% | 53.85% | 0% | — | 59,909 |
-| RAG for knowledge-intensive NLP | 20% | 45% | 0% | 0% | 44,019 |
-| Parameter-efficient fine-tuning | 0% | 38.46% | 0% | — | 32,881 |
-| Diffusion models | 8% | 45.45% | — | 0% | 57,503 |
-| Scaling laws | 8% | 35% | 0% | — | 43,217 |
-| In-context learning | 0% | 64.29% | 0% | — | 61,867 |
-| Hallucination in LLMs | 0% | 20.83% | 0% | 0% | 50,949 |
-| Sparse mixture of experts | 8% | 5.26% | 0% | 0% | 41,770 |
+| Topic | Retr. Cov | Acc. Cov | Halluc. | Contr. Correct | Contr. Recall | OQ Res. | Tokens |
+|-------|-----------|----------|---------|----------------|---------------|---------|--------|
+| Chain-of-thought prompting | 0% | 55% | 5.88% | ✓ | 0% | 0% | 56,433 |
+| RLHF for LLM alignment | 0% | 20% | 0% | ✗ | 0% | — | 65,097 |
+| Vision transformers | 0% | 0% | 53.85% | ✗ | 0% | — | 59,909 |
+| RAG for knowledge-intensive NLP | 0% | 20% | 45% | ✗ | 0% | 0% | 44,019 |
+| Parameter-efficient fine-tuning | 0% | 0% | 38.46% | ✗ | 0% | — | 32,881 |
+| Diffusion models | 0% | 8% | 45.45% | ✓ | — | 0% | 57,503 |
+| Scaling laws | 0% | 8% | 35% | ✗ | 0% | — | 43,217 |
+| In-context learning | 0% | 0% | 64.29% | ✗ | 0% | — | 61,867 |
+| Hallucination in LLMs | 0% | 0% | 20.83% | ✗ | 0% | 0% | 50,949 |
+| Sparse mixture of experts | 0% | 8% | 5.26% | ✗ | 0% | 0% | 41,770 |
 
 ### Почему метрики плохие
 
