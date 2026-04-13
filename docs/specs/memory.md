@@ -65,6 +65,7 @@ class AgentState(TypedDict):
     final_review: Optional[str]            # Markdown от Renderer
 
     # Инфраструктура
+    session_id: str                         # генерируется при старте: f"sess_{uuid4().hex[:8]}"
     sources_available: List[str]           # ["arxiv", "semantic_scholar"]
     token_count: int                       # суммарные токены сессии
     session_budget_remaining: float        # остаток в $

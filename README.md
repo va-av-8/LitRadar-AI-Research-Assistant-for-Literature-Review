@@ -40,3 +40,252 @@
 | Интеграция с платными базами (IEEE, ACM, Springer) | Требует подписок и OAuth |
 | Автоматическая генерация BibTeX | Вне фокуса текущего PoC |
 | Telegram-бот или мобильный интерфейс | Streamlit достаточен для демо |
+
+---
+
+## Быстрый старт
+
+### Установка
+
+```bash
+# Клонирование репозитория
+git clone https://github.com/your-repo/LitRadar-AI-Research-Assistant-for-Literature-Review.git
+cd LitRadar-AI-Research-Assistant-for-Literature-Review
+
+# Установка зависимостей (требуется uv)
+uv sync
+
+# Настройка переменных окружения
+cp .env.example .env
+# Заполнить OPENROUTER_API_KEY в .env
+```
+
+### Запуск приложения
+
+```bash
+# Streamlit UI
+uv run streamlit run app.py
+
+# Или напрямую через Python
+uv run python -c "from src.orchestrator import run_pipeline; print(run_pipeline('your research topic'))"
+```
+
+### Запуск evaluation
+
+```bash
+# Полный прогон на 10 тестовых темах
+uv run python evals/eval_runner.py --reset-db
+
+# Без предзагрузки классических статей (для сравнения)
+uv run python evals/eval_runner.py --reset-db --no-preload
+```
+
+---
+
+## Архитектура поиска
+
+### Текущая реализация: классические статьи + недавние
+
+Система использует **два источника** для балансировки между классическими и актуальными работами:
+
+| Источник | Цель | Сортировка |
+|----------|------|------------|
+| **ArXiv API** | Свежие препринты | По релевантности (default) |
+| **Semantic Scholar API** | Высокоцитируемые работы | По цитированиям (`citationCount:desc`) |
+
+**Fallback на OpenAlex:** при rate limit Semantic Scholar (429) система автоматически переключается на OpenAlex API с фильтрацией по AI/ML топикам.
+
+### Preload классических статей (evals)
+
+Для evaluation дополнительно загружаются **top-25 высокоцитируемых статей** из OpenAlex в ChromaDB перед запуском pipeline. Это обеспечивает "фоновые знания" о классических работах.
+
+Фильтры OpenAlex:
+- `topics.id`: NLP, Neural Networks, CV
+- `cited_by_count:>50`
+- `publication_year:>2020`
+- `indexed_in:arxiv`
+
+### Как улучшить поиск
+
+1. **Добавить Semantic Scholar API ключ** — снимает rate limit (100 req/5min → 1000 req/min)
+2. **Расширить топики OpenAlex** — добавить reinforcement learning, optimization и др.
+3. **Использовать citation graph** — искать статьи, цитирующие/цитируемые найденными (Connected Papers паттерн)
+4. **Гибридная сортировка** — комбинировать relevance score и citation count
+5. **Semantic search по абстрактам** — использовать embeddings для поиска похожих работ в ChromaDB
+
+---
+
+## Метрики evaluation
+
+### Описание метрик
+
+| Метрика | Формула | Цель | Что измеряет |
+|---------|---------|------|--------------|
+| **Retrieval Coverage** | `\|found ∩ expected\| / \|expected\|` до Critic | — | Доля эталонных статей, найденных поиском |
+| **Accepted Coverage** | `\|accepted ∩ expected\| / \|expected\|` после Critic | ≥70% | Доля эталонных статей в финальном результате |
+| **Hallucination Rate** | `removed_citations / (removed + verified)` | 0% | Доля цитат на несуществующие статьи |
+| **Contradiction Recall** | `\|detected ∩ expected_pairs\| / \|expected_pairs\|` | ≥60% | Способность находить противоречия |
+| **OQ Resolution** | `\|closed_questions\| / \|open_questions\|` | ≥60% | Прогресс во второй итерации |
+
+### Текущие результаты (2026-04-14)
+
+**Общие метрики (10 тем):**
+
+| Metric | Value | Target |
+|--------|-------|--------|
+| Accepted coverage ≥ 70% | 0/10 (0%) | ≥ 70% of topics |
+| Avg accepted coverage | 11.95% | ≥ 70% |
+| Hallucination rate = 0% | 1/10 (10%) | 100% of topics |
+| Average hallucination rate | 31.40% | 0% |
+| Contradictions correct | 2/10 (20%) | — |
+| OQ resolution ≥ 60% | 0/10 (0%) | ≥ 60% of topics |
+| Average tokens/session | 51,364 | — |
+
+**Что работает:**
+- ✅ Pipeline стабильно завершается на всех 10 темах
+- ✅ Система находит противоречия между статьями (2/10 тем)
+- ✅ Verifier отсекает невалидные цитаты
+- ✅ OpenAlex fallback работает при rate limit Semantic Scholar
+- ✅ Preload классических статей повышает coverage
+
+**Per-topic результаты:**
+
+| Topic | Acc. Cov | Halluc. | Contr. recall | OQ res. | Tokens |
+|-------|----------|---------|---------------|---------|--------|
+| Chain-of-thought prompting | 55% | 5.88% | 0% | 0% | 56,433 |
+| RLHF for LLM alignment | 20% | 0% | 0% | — | 65,097 |
+| Vision transformers | 0% | 53.85% | 0% | — | 59,909 |
+| RAG for knowledge-intensive NLP | 20% | 45% | 0% | 0% | 44,019 |
+| Parameter-efficient fine-tuning | 0% | 38.46% | 0% | — | 32,881 |
+| Diffusion models | 8% | 45.45% | — | 0% | 57,503 |
+| Scaling laws | 8% | 35% | 0% | — | 43,217 |
+| In-context learning | 0% | 64.29% | 0% | — | 61,867 |
+| Hallucination in LLMs | 0% | 20.83% | 0% | 0% | 50,949 |
+| Sparse mixture of experts | 8% | 5.26% | 0% | 0% | 41,770 |
+
+### Почему метрики плохие
+
+| Проблема | Причина | Влияние |
+|----------|---------|---------|
+| **Низкий coverage** | Semantic Scholar rate limited без API ключа; ArXiv находит свежие, но не классические работы | Пропускаем важные статьи |
+| **Hallucination >0%** | Synthesis генерирует paper_id, которые не проходят HTTP-проверку | Ненадёжные цитаты |
+| **Contradiction recall 0%** | Synthesis не детектирует противоречия между конкретными парами статей | Пропускаем научные дискуссии |
+| **OQ resolution 0%** | Вторая итерация не закрывает открытые вопросы | Reflection loop неэффективен |
+
+---
+
+## Проблемы агентов
+
+### 1. Hallucination в Synthesis
+
+**Как считается:** Verifier делает HTTP GET на `arxiv.org/abs/{id}` — если 200 OK, цитата verified, иначе removed.
+
+**Причины галлюцинаций:**
+- LLM генерирует paper_id "по памяти", а не из найденных статей
+- Неправильный формат arxiv ID (например, `2301.1234` вместо `2301.01234`)
+- Ссылка на статью, которая была в training data, но не в текущем контексте
+
+**Как улучшить:**
+- Строгий промпт: "Используй ТОЛЬКО paper_id из предоставленного списка"
+- Structured output с enum возможных paper_id
+- Валидация формата arxiv ID перед генерацией
+
+### 2. Низкий Contradiction Recall
+
+**Причина:** Synthesis видит абстракты, но не полные тексты. Противоречия часто в деталях методологии.
+
+**Как улучшить:**
+- Явный промпт на поиск противоречий: "Найди статьи с противоположными выводами"
+- Few-shot примеры известных научных дискуссий
+- Chain-of-thought для сравнения пар статей
+
+### 3. Неэффективный Reflection Loop
+
+**Причина:** Open questions из первой итерации слишком абстрактные, Planner генерирует похожие подзапросы.
+
+**Как улучшить:**
+- Более конкретные open questions с указанием, что именно искать
+- Запрет на повторение подзапросов из предыдущей итерации
+- Анализ gap между найденным и ожидаемым
+
+---
+
+## Методы улучшения промптов
+
+### Применимые техники
+
+| Техника | Описание | Применимость для LitRadar |
+|---------|----------|---------------------------|
+| **Few-shot prompting** | Примеры входа-выхода в промпте | ✅ Для Critic (примеры релевантных/нерелевантных статей) |
+| **Chain-of-Thought (CoT)** | Пошаговое рассуждение | ✅ Для Synthesis (анализ противоречий) |
+| **Self-Consistency** | Несколько CoT → majority vote | ⚠️ Дорого, но полезно для Critic |
+| **Structured Output** | JSON schema для ответа | ✅ Уже используется, можно усилить |
+| **Role prompting** | "Ты эксперт в ML..." | ✅ Для Synthesis и Planner |
+| **Constrained generation** | Ограничение vocabulary | ✅ Для paper_id (только из списка) |
+| **Self-reflection** | Модель проверяет свой ответ | ⚠️ Увеличивает latency, но снижает hallucination |
+| **Retrieval-Augmented Generation** | Контекст из базы знаний | ✅ Уже используется (ChromaDB) |
+
+
+---
+
+## Структура проекта
+
+```
+├── src/
+│   ├── __init__.py
+│   ├── agents/
+│   │   ├── __init__.py
+│   │   ├── planner.py          # Декомпозиция темы на подзапросы
+│   │   ├── critic.py           # Фильтрация релевантных статей
+│   │   ├── synthesis.py        # Анализ, выявление противоречий
+│   │   └── renderer.py         # Формирование финального отчёта
+│   ├── search/
+│   │   ├── __init__.py
+│   │   ├── arxiv_client.py     # ArXiv API (свежие препринты)
+│   │   ├── semantic_scholar_client.py  # S2 API (высокоцитируемые)
+│   │   ├── openalex_client.py  # OpenAlex API (fallback)
+│   │   └── sanitizer.py        # Очистка входных данных
+│   ├── orchestrator.py         # LangGraph pipeline
+│   ├── retriever.py            # ChromaDB vector store
+│   ├── verifier.py             # HTTP verification of citations
+│   ├── state.py                # AgentState, PaperMetadata
+│   ├── llm_client.py           # OpenRouter LLM client
+│   ├── config.py               # Settings from .env
+│   └── logger.py               # Langfuse logging
+│
+├── evals/
+│   ├── eval_runner.py          # Evaluation script с preload
+│   ├── expand_expected_papers.py  # Расширение эталонных наборов
+│   ├── test_topics.json        # 10 тестовых тем с ground truth
+│   └── results/                # Результаты (gitignored)
+│
+├── docs/
+│   ├── system-design.md        # Архитектура системы
+│   ├── product-proposal.md     # Продуктовое описание
+│   ├── governance.md           # Правила разработки
+│   ├── prompts/
+│   │   ├── prompts-planner.md
+│   │   ├── prompts-critic.md
+│   │   ├── prompts-synthesis.md
+│   │   └── prompts-renderer.md
+│   └── specs/
+│       ├── orchestrator.md
+│       ├── retriever.md
+│       ├── memory.md
+│       ├── tools.md
+│       ├── observability.md
+│       └── serving.md
+│
+├── app.py                      # Streamlit UI
+├── pyproject.toml              # Зависимости (uv)
+├── uv.lock                     # Lock-файл
+├── .env.example                # Шаблон переменных окружения
+├── .gitignore
+└── README.md
+```
+
+---
+
+## Лицензия
+
+MIT
