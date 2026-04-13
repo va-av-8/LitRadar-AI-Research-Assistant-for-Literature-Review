@@ -133,12 +133,12 @@ uv run python evals/eval_runner.py --reset-db --no-preload
 
 | Metric | Value | Target |
 |--------|-------|--------|
-| Accepted coverage ≥ 70% | 0/10 (0%) | ≥ 70% of topics |
+| Accepted coverage ≥ 70% | 0/10 (0%) | ≥ 70% |
 | Avg accepted coverage | 11.95% | ≥ 70% |
-| Hallucination rate = 0% | 1/10 (10%) | 100% of topics |
+| Hallucination rate = 0% | 1/10 (10%) | 100% |
 | Average hallucination rate | 31.40% | 0% |
-| Contradictions correct | 2/10 (20%) | — |
-| OQ resolution ≥ 60% | 0/10 (0%) | ≥ 60% of topics |
+| Contradictions correct | 2/10 (20%) | ≥ 60%  |
+| OQ resolution ≥ 60% | 0/10 (0%) | ≥ 60% |
 | Average tokens/session | 51,364 | — |
 
 **Что работает:**
