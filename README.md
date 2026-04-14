@@ -45,7 +45,15 @@
 
 ## Быстрый старт
 
-### Установка
+### Онлайн-версия
+
+Приложение доступно онлайн — не требует установки:
+
+**https://litradar-ai-research-assistant-for-literature-re-production.up.railway.app**
+
+Это production-версия, автоматически деплоится из ветки `main` на Railway.
+
+### Локальная установка
 
 ```bash
 # Клонирование репозитория
@@ -79,6 +87,22 @@ uv run python evals/eval_runner.py --reset-db
 # Без предзагрузки классических статей (для сравнения)
 uv run python evals/eval_runner.py --reset-db --no-preload
 ```
+
+---
+
+## Деплой
+
+Приложение контейнеризировано и готово к деплою:
+
+- **Dockerfile** в корне репозитория (python:3.11-slim + uv)
+- **Хостинг:** Railway с автодеплоем из ветки `main`
+- **Секреты:** API-ключи задаются через переменные окружения на платформе (не через .env)
+- **ChromaDB:** данные не персистятся между редеплоями (stateless режим)
+
+Переменные окружения для настройки:
+- `OPENROUTER_API_KEY` — обязательно
+- `LANGFUSE_SECRET_KEY`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_HOST` — для observability
+- `SEMANTIC_SCHOLAR_API_KEY` — опционально, снимает rate limit
 
 ---
 
